@@ -39,7 +39,9 @@ const publicClient = createPublicClient({
 })
 
 // Scenario: You want to self-execute a transaction on a chain where you have no ETH
-// Solution: Just-in-time bridge the gas you need to execute the transaction
+// Solution: Just-in-time bridge the gas money you need to execute the transaction
+// Note: This is a basic example with the purpose of demonstrating generally how you could go about implementing
+// this ux. There are many improvements and optimizations you could make, but this is a solid starting point.
 
 const Home: NextPage = () => {
   const { address, chain: activeChain } = useAccount()
@@ -80,8 +82,6 @@ const Home: NextPage = () => {
     },
   })
 
-  // Note: This is a simple example with the purpose of demonstrating generally how you would go about implementing just-in-time bridging.
-  // There are definitely some improvements and other things to consider when adding this
   const unwrapSepoliaWeth = useCallback(async () => {
     if (!wallet || !address) {
       console.error('Missing wallet')
